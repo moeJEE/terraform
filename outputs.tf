@@ -23,5 +23,5 @@ output "computer_vision_endpoint" {
 }
 
 output "static_web_app_url" {
-  value = azurerm_static_site.frontend.default_hostname
+  value = azurerm_static_web_app.frontend.default_host_name
 }

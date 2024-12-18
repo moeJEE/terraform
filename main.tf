@@ -87,16 +87,19 @@ resource "azurerm_windows_function_app" "ocr_function" {
 }
 
 # Static Web App
-resource "azurerm_static_site" "frontend" {
+resource "azurerm_static_web_app" "frontend" {
   name                = var.static_web_app_name
   resource_group_name = azurerm_resource_group.document_processing.name
   location            = "East US 2"
   sku_tier            = "Free"
   sku_size            = "Free"
-  repository_url      = var.github_repo_url
-  branch              = var.github_branch
-  github_token        = var.github_pat
+
+  # Optional: Tags
+  tags = {
+    Environment = "Production"
+  }
 }
+
 
 # Application Insights
 resource "azurerm_application_insights" "app_insights" {
